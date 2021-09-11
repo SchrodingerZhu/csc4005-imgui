@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 find_package(SDL2 REQUIRED)
 find_package(Freetype REQUIRED)
+set(OpenGL_GL_PREFERENCE "GLVND")
 find_package(OpenGL REQUIRED)
 
 include_directories(include imgui imgui/backends ${SDL2_INCLUDE_DIRS} ${FREETYPE_INCLUDE_DIRS})
