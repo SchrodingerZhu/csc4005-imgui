@@ -26,6 +26,7 @@ graphic::GraphicContext::GraphicContext(std::string title, int height, int width
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     ImGui::StyleColorsDark();
     ImGui_ImplSDL2_InitForOpenGL(sdl_window, gl_context);
+    ImGui_ImplOpenGL2_Init();
     SDL_GL_SetSwapInterval(static_cast<int>(vsync_flag));
 }
 
