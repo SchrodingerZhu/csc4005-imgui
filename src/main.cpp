@@ -5,7 +5,7 @@ int main() {
     graphic::GraphicContext context;
     bool show_demo_window = true;
     bool show_another_window = false;
-    context.run([&](graphic::GraphicContext * context, graphic::WindowImpl*, SDL_Window*){
+    context.run([&](graphic::GraphicContext * context, SDL_Window*){
         if (show_demo_window)
             ImGui::ShowDemoWindow(&show_demo_window);
 
@@ -21,7 +21,7 @@ int main() {
             ImGui::Checkbox("Another Window", &show_another_window);
 
             ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-            ImGui::ColorEdit3("clear color", (float*)&context->get_clear_color()); // Edit 3 floats representing a color
+            ImGui::ColorEdit3("clear color", (float*)&context->clear_color()); // Edit 3 floats representing a color
 
             if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
                 counter++;
