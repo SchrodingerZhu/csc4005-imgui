@@ -52,6 +52,7 @@ namespace graphic {
             auto font_size = ddpi / 72.f * 12.f;
             auto font = io.Fonts->AddFontFromFileTTF(FONT_PATH, font_size);
             IM_ASSERT(font != NULL);
+            IM_UNUSED(font);
 #endif
             while (!finished) {
                 SDL_SetWindowTitle(sdl_window, title_.c_str());
