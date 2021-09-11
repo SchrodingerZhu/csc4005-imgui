@@ -12,7 +12,7 @@ include_directories(include imgui imgui/backends ${SDL2_INCLUDE_DIRS} ${FREETYPE
 file(GLOB IMGUI_SRC
         imgui/*.cpp
         imgui/backends/imgui_impl_sdl.cpp
-        imgui/backends/imgui_impl_opengl3.cpp
+        imgui/backends/imgui_impl_opengl2.cpp
         imgui/misc/freetype/imgui_freetype.cpp
         imgui/misc/fonts/binary_to_compressed_c.cpp
         imgui/misc/cpp/imgui_stdlib.cpp

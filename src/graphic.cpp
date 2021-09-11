@@ -9,13 +9,11 @@ graphic::GraphicContext::GraphicContext(std::string title, int height, int width
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0) {
         throw GraphicException("unable to init SDL");
     }
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, 0);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
     auto window_flags = static_cast<SDL_WindowFlags>(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE |
                                                      SDL_WINDOW_ALLOW_HIGHDPI);
     sdl_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED,
@@ -28,13 +26,12 @@ graphic::GraphicContext::GraphicContext(std::string title, int height, int width
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     ImGui::StyleColorsDark();
     ImGui_ImplSDL2_InitForOpenGL(sdl_window, gl_context);
-    ImGui_ImplOpenGL3_Init("#version 130");
     SDL_GL_SetSwapInterval(static_cast<int>(vsync_flag));
 }
 
 graphic::GraphicContext::~GraphicContext() {
     // Cleanup
-    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplOpenGL2_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
 

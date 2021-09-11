@@ -5,7 +5,7 @@
 
 #include <imgui.h>
 #include <imgui_impl_sdl.h>
-#include <imgui_impl_opengl3.h>
+#include <imgui_impl_opengl2.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <exception>
@@ -67,7 +67,7 @@ namespace graphic {
                 }
 
                 // Start the Dear ImGui frame
-                ImGui_ImplOpenGL3_NewFrame();
+                ImGui_ImplOpenGL2_NewFrame();
                 ImGui_ImplSDL2_NewFrame();
                 ImGui::NewFrame();
 
@@ -78,7 +78,7 @@ namespace graphic {
                 glClearColor(clear_color_.x * clear_color_.w, clear_color_.y * clear_color_.w,
                              clear_color_.z * clear_color_.w, clear_color_.w);
                 glClear(GL_COLOR_BUFFER_BIT);
-                ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+                ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
                 SDL_GL_SwapWindow(sdl_window);
             }
         }
