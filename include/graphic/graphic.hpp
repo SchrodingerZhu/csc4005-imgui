@@ -11,7 +11,7 @@
 #include <exception>
 #include <string>
 #include <memory>
-
+#include <iostream>
 namespace graphic {
 
     enum class VSyncFlag : int {
@@ -47,12 +47,13 @@ namespace graphic {
 #ifdef FONT_PATH
             float ddpi, hdpi, vdpi;
             if (SDL_GetDisplayDPI(0, &ddpi, &hdpi, &vdpi) != 0) {
-                throw GraphicException("cannot get screen dpi");
+               std:: cerr << "[WARN] cannot get screen dpi, auto-scaling disabled" << std::endl;
+            } else {
+               auto font_size = ddpi / 72.f * 12.f;
+               auto font = io.Fonts->AddFontFromFileTTF(FONT_PATH, font_size);
+               IM_ASSERT(font != NULL);
+               IM_UNUSED(font);
             }
-            auto font_size = ddpi / 72.f * 12.f;
-            auto font = io.Fonts->AddFontFromFileTTF(FONT_PATH, font_size);
-            IM_ASSERT(font != NULL);
-            IM_UNUSED(font);
 #endif
             while (!finished) {
                 SDL_SetWindowTitle(sdl_window, title_.c_str());
